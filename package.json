@@ -1,0 +1,19 @@
+{
+  "name": "khal",
+  "version": "0.1.0",
+  "description": "Node utility librairies",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Alex-Werner/khal.git"
+  },
+  "author": {
+    "name": "Alex-Werner",
+    "email": "alex@werner.fr"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Alex-Werner/khal/issues"
+  },
+  "homepage": "https://github.com/Alex-Werner/khal#readme"
+}
