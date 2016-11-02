@@ -32,7 +32,9 @@ const ce=function(){
     }
     return arguments;
 };
-
+const clone = function(obj){
+	return JSON.parse(JSON.stringify(obj));
+}
 module.exports ={
     cl:cl,
     ce:ce
