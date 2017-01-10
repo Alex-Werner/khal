@@ -7,35 +7,32 @@
  * If only one arg is passed, it return the arg, if many it return array
  * @returns {Arguments}
  */
-const cl = function () {
+const cl = () => () {
     if (arguments.length == 0) {
-        var timestamp = new Date().getTime();
-        console.log(timestamp);
-        return timestamp;
+        const timestamp = new Date().getTime()
+        console.log(timestamp)
+        return timestamp
     }
     console.log.apply(console, arguments);
     if (arguments.length == 1) {
-        return arguments[0];
+        return arguments[0]
     }
-    return arguments;
-};
-
-const ce=function(){
-    if(arguments.length==0){
-        var t = new Date().getTime();
-        console.error(t);
-        return t;
-    }
-    console.error.apply(console, arguments);
-    if(arguments.length==1){
-        return arguments[0];
-    }
-    return arguments;
-};
-const clone = function(obj){
-	return JSON.parse(JSON.stringify(obj));
+    return arguments
 }
-module.exports ={
-    cl:cl,
-    ce:ce
-};
+
+const ce = () => {
+    if (arguments.length == 0) {
+        const time = new Date().getTime()
+        console.error(time)
+        return time
+    }
+    console.error.apply(console, arguments)
+    if (arguments.length == 1) {
+        return arguments[0]
+    }
+    return arguments
+}
+
+const clone = obj => JSON.parse(JSON.stringify(obj))
+
+module.exports = { cl, ce }
