@@ -126,10 +126,10 @@ const math = {
      * exemple randomBetweenMinAndMax(0,10) => [0,1,...,9,10]
      * exemple randomBetweenMinAndMax(-10,10,0.1) => [-10.0,-9.9,-9.8,...,9.9,10]
      */
-    randomBetweenMinAndMax:function(min, max, precision=1){
-        if(typeof(precision)==='undefined') precision=1;
-        var r = Math.floor(Math.random()*(max-min+precision)/precision);
-        return (r*precision+min);
+    randomBetweenMinAndMax: function (min, max, precision = 1) {
+        if (typeof(precision) === 'undefined') precision = 1;
+        var r = Math.floor(Math.random() * (max - min + precision) / precision);
+        return (r * precision + min);
     }
     
 };
@@ -140,13 +140,13 @@ const geo = {
     earth: {
         "radius": 6371//km, 6371000 in meters
     },
-    convert:function(float){
+    convert: function (float) {
         return {
-            toMiles:function(){
-                return float*0.000621371192;
+            toMiles: function () {
+                return float * 0.000621371192;
             },
-            toMeters:function(){
-                return float*1609.344;
+            toMeters: function () {
+                return float * 1609.344;
             }
         }
     },
@@ -160,7 +160,7 @@ const geo = {
         var st = string.split(',');
         return this.create(st[0], st[1]);
     },
-    calculateDistance(startingPoint, arrivalPoint, unit = "km", precision=4){
+    calculateDistance(startingPoint, arrivalPoint, unit = "km", precision = 4){
         //khal.math should be used using a require if you ends up splitting the file (which you should TODO) :D
         function checkValidObject(obj) {
             if (
@@ -186,15 +186,15 @@ const geo = {
         
         var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         var d = radius * c; // Distance
-
-        switch (unit){
+        
+        switch (unit) {
             case "km":
                 break;
             case "m":
-                d*=1000;
+                d *= 1000;
                 break;
             case "miles":
-                d=this.convert(d*1000).toMiles();
+                d = this.convert(d * 1000).toMiles();
                 break;
             default:
                 break;
@@ -203,4 +203,141 @@ const geo = {
         
     }
 };
-module.exports = {cl, ce, union, clone, intersect, is, geo, math};
+const misc = {
+    formatByteSize: function (bytes, binary = true) {
+        function outputSIForm(bytes) {
+            if (bytes < 1000) return bytes + " bytes";
+            else if (bytes < 1000000) return (bytes / 1000).toFixed(3) + " KB";
+            else if (bytes < 1000000000) return (bytes / 1000000).toFixed(3) + " MB";
+            else if (bytes < 1000000000000) return (bytes / 1000000000).toFixed(3) + " GB";
+            else if (bytes < 1000000000000000) return (bytes / 1000000000000).toFixed(3) + " TB";
+            else if (bytes < 1000000000000000000) return (bytes / 1000000000000000).toFixed(3) + " PB";
+            else return (bytes / 1000000000000000000000).toFixed(3) + " EB ";
+        };
+        function outputIEECForm(bytes) {
+            if (bytes < 1024) return bytes + " bytes";
+            else if (bytes < 1048576) return (bytes / 1024).toFixed(3) + " KiB";
+            else if (bytes < 1073741824) return (bytes / 1048576).toFixed(3) + " MiB";
+            else if (bytes < 1099511627776) return (bytes / 1073741824).toFixed(3) + " GiB";
+            else if (bytes < 1125899906842624) return (bytes / 1099511627776).toFixed(3) + " TiB";
+            else if (bytes < 1125899906842624 * 1024) return (bytes / 1125899906842624).toFixed(3) + " PiB";
+            else return (bytes / 1125899906842624 * 1024 * 1024).toFixed(3) + " EiB";
+        }
+        
+        return binary ? outputIEECForm(bytes) : outputSIForm(bytes);
+    },
+    sizeOfObjectReadable:function(object,binary=true){
+      return this.formatByteSize(this.sizeOfObject(object),binary);  
+    },
+    sizeOfObject: function (object) {
+        "use strict";
+        /**
+         * Byte sizes are taken from ECMAScript Language Specification
+         * http://www.ecma-international.org/ecma-262/5.1/
+         * http://bclary.com/2004/11/07/#a-4.3.16
+         */
+        
+        var ECMA_byteSize = {
+            STRING: 2,
+            BOOLEAN: 4,
+            NUMBER: 8
+        };
+        var objects = [object];
+        var bytes = 0;
+        var SIZE_FOR_UNRECOGNIZED_TYPE = 0;
+        
+        
+        for (var index = 0; index < objects.length; index++) {
+            if (is.obj(object)) {
+                var stats = {
+                    size: function (obj) {
+                        if (is.string(obj)) {
+                            return obj.length * ECMA_byteSize.STRING;
+                        }
+                        if (is.bool(obj)) {
+                            return ECMA_byteSize.BOOLEAN;
+                        }
+                        if (is.num(obj)) {
+                            return ECMA_byteSize.NUMBER;
+                        }
+                        return SIZE_FOR_UNRECOGNIZED_TYPE;
+                    },
+                    keys: [], values: [],
+                    addKey: function (key) {
+                        this.keys.push(key);
+                    },
+                    addKeyValue: function (key, value) {
+                        this.keys.push(key);
+                        this.values.push(value);
+                    },
+                    print: function () {
+                        console.log('---\nkeys:\t', this.keys.length);
+                        console.log('values:\t', this.values.length, '\n---');
+                    },
+                    calculateBytes: function () {
+                        var all = this.keys.concat(this.values);
+                        
+                        var map = all.map(function (x) {
+                            return stats.size(x);
+                        });
+                        
+                        return map.reduce(function (x, y) {
+                            return x + y;
+                        }, 0);
+                    }
+                };
+                var collectKeysVal = function (object, stats) {
+                    for (var prop in object) {
+                        if (object.hasOwnProperty(prop)) {
+                            if (is.obj(object[prop])) {
+                                // this key is a reference, count the key and proceed with the referenced value
+                                stats.addKey(prop);
+                                collectKeysVal(object[prop], stats);
+                            } else {
+                                stats.addKeyValue(prop, object[prop]);
+                            }
+                        }
+                    }
+                    return object;
+                };
+                
+                try {
+                    collectKeysVal(object, stats);
+                    
+                } catch (e) {
+                    
+                }
+                bytes = stats.calculateBytes();
+                
+            } else if (is.string(object)) {
+                bytes = object.length * ECMA_byteSize.STRING;
+            } else if (is.bool(object)) {
+                bytes = ECMA_byteSize.BOOLEAN;
+            } else if (is.num(object)) {
+                bytes = ECMA_byteSize.NUMBER;
+            }
+            return bytes;
+        }
+    }
+};
+const regex = {
+    types:{
+        RFC4122V4UUIDRegex:/^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4{1}[a-fA-F0-9]{3}-[89abAB]{1}[a-fA-F0-9]{3}-[a-fA-F0-9]{12}$/,
+        emailUnicodeRegex:/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/,
+        emailRegex:/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+        usernameRegex:/^[A-Za-z0-9_.]{3,}$/,
+        passwordRegex:/^[a-zA-Z0-9!@#$%^&*]{6,36}$/,
+        genderRegex:/^(Male|Female)$/,
+        birthdateRegex:/^(([0-9]{4})\-(0[1-9]|1[0-2])\-(0[1-9]|[1-2][0-9]|3[0-1]))$/
+    },
+    regTest:(regex,val)=> regex.test(val),
+    isUUIDV4:(uuid)=>regex.regTest(new RegExp(regex.types.RFC4122V4UUIDRegex),uuid),
+    isUsername:(username)=>regex.regTest(new RegExp(regex.types.usernameRegex,'i'),username),
+    isBirthdate:(birthday)=>regex.regTest(new RegExp(regex.types.birthdateRegex),birthday),
+    isGender:(gender)=>regex.regTest(new RegExp(regex.types.genderRegex), gender),
+    isPassword:(passwd)=>regex.regTest(new RegExp(regex.types.passwordRegex), passwd),
+    isEmail:(email)=>regex.regTest(new RegExp(regex.types.emailRegex,'i'),email),
+    isUnicodeEmail:(email)=>regex.regTest(new RegExp(regex.types.emailUnicodeRegex,'i'),email),
+    
+};
+module.exports = {cl, ce, union, clone, intersect, is, geo, math, misc, regex};

@@ -34,3 +34,17 @@ Utils for node project
     - `radianToDegree(rad)`
     - `degreeToRadian(deg)`
     - `randomBetweenMinAndMax(min,max,[precision])`
+- `misc` - Handle stuff
+    - `formatByteSize(bytes,[isSIForm])` - Make bytes readable using IEEC (MB) or SI (MiB) form
+    - `sizeOfObject(obj)` - Get bytes size from obj (number, object or string)
+    - `sizeOfObjectReadable(obj,[isSIForm])` - Make bytes readable using IEEC (MB) or SI (MiB) form from obj
+- `regex`
+    - `regTest(reg, val)` - Handy shortcut for regex testing
+    - `isUUIDV4(uuid)` - Test a valid UUID V4
+    - `isUsername(username)` - Test a valid username
+    - `isBirthdate(birthday)` - Test a valid birthdate
+    - `isGender(gender)` - Test a valid gender
+    - `isPassword(password)` - Test a valid password
+    - `isEmail(email)` - Test a valid email
+    - `isUnicodeEmail(email)` - Test a valid unicode email
+    

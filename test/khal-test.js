@@ -1,4 +1,4 @@
-const { cl, ce , union, clone, intersect, is, geo, math } = require('../index.js');
+const { cl, ce , union, clone, intersect, is, geo, math , misc, regex} = require('../index.js');
 const should = require('should');
 
 describe('- Khal utils ', function() {
@@ -166,9 +166,37 @@ describe('- Khal utils ', function() {
             let deg = 90;
             let rad = math.degreeToRadian(deg);
             rad.should.be.equal(1.5707963267948966);
-            math.degreeToRadian(180).should.be.equal(Math.PI);
-    
-    
+            math.degreeToRadian(180).should.be.equal(Math.PI);    
         });
+    })
+    describe('Misc',function(){
+        it('should transform bytes into readable form',function(){
+            let bytes = 8;
+            misc.formatByteSize(bytes).should.be.equal('8 bytes');
+            misc.formatByteSize(bytes,false).should.be.equal('8 bytes');
+            misc.formatByteSize(3171,false).should.be.equal('3.171 KB');
+            misc.formatByteSize(3171).should.be.equal('3.097 KiB');
+            misc.formatByteSize(Number.MAX_SAFE_INTEGER).should.be.equal('8.000 PiB');
+            misc.formatByteSize(Number.MAX_SAFE_INTEGER,false).should.be.equal('9.007 PB');
+            misc.formatByteSize(Number.MAX_VALUE).should.be.equal('1.6742321987285425e+299 EiB');
+        });
+        it('should get size of element',function () {
+            misc.sizeOfObject("string").should.be.equal(12);
+            misc.sizeOfObject({a:{x:"toto"},c:"d"}).should.be.equal(16);
+        })
+        it('should get size of element in human form',function () {
+            misc.sizeOfObjectReadable("string").should.be.equal("12 bytes");
+            misc.sizeOfObjectReadable({a:{x:"toto"},c:"d"}).should.be.equal("16 bytes");
+    
+        })
+    })
+    describe('Regexes',function(){
+        it('should verify a valid uuid',function(){
+            let validUUID = "55c1029b-40d8-47aa-98a0-f5e7dba73903";
+            let invalidUUID = "55c1029b-90d8-2baa-98a0-f5e7dba73903";
+            regex.isUUIDV4(validUUID).should.equal(true);
+            regex.isUUIDV4(invalidUUID).should.equal(false);
+        });
+     
     })
 });
