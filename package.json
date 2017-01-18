@@ -1,6 +1,6 @@
 {
   "name": "khal",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Node utility librairies",
   "main": "index.js",
   "repository": {
@@ -11,6 +11,26 @@
     "name": "Alex-Werner",
     "email": "alex@werner.fr"
   },
+  "keywords": [
+    "degrees",
+    "radians",
+    "angles",
+    "arc",
+    "arcdegree",
+    "convert",
+    "type",
+    "check",
+    "assert",
+    "type-check",
+    "longitude",
+    "latitude",
+    "geoCordinate",
+    "distance",
+    "coordinates",
+    "clone",
+    "union",
+    "intersection"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Alex-Werner/khal/issues"

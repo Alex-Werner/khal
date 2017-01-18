@@ -23,3 +23,13 @@ Utils for node project
     - `promise`
     - `obs`
     - `event`
+- `geo` - Handle geoCordinate
+    - `create(lat, lon)` - returns a GeoCordinate object
+    - `geocordinateStringToGeoCoordinateObject(str)` - transform a str "43.597446,1.454469" to a geoObject
+    - `calculateDistance(geoCordinate, geoCordinate, [unit{str}, [precision {int}]])` - get distance between two geoObject, can be in `km`,`m` or `miles`,
+    - `convert(float)`
+        - `toMiles()` - convert to Miles a value in meters
+        - `toMeters()` - convert to Meters a value in miles
+- `math` - Handle math
+    - `radianToDegree(rad)`
+    - `degreeToRadian(deg)`
