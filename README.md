@@ -33,3 +33,4 @@ Utils for node project
 - `math` - Handle math
     - `radianToDegree(rad)`
     - `degreeToRadian(deg)`
+    - `randomBetweenMinAndMax(min,max,[precision])`
