@@ -60,4 +60,11 @@ sort.by(obj,{name:1,age:1}); //Will first sort asc by name then by age (so brice
     - `isPassword(password)` - Test a valid password
     - `isEmail(email)` - Test a valid email
     - `isUnicodeEmail(email)` - Test a valid unicode email
-    
+- `date`
+    - `time`
+    - `date`
+    - `datetime`
+    - `UTCEpochMS`
+    - `UTCEpoch`
+    - `localEpochMS`
+    - `localEpoch`
