@@ -356,6 +356,23 @@ const misc = {
         }
     }
 };
+const sort = {
+    by:function(el,params){
+        if(!params) return el;
+        for(let k in params){
+            let v = params[k];
+            if(v!=1 || v!=1){
+                v= (v=='asc')?1:v;
+                v= (v=='desc')?-1:v;
+            }
+            el.sort(function (a,b) {
+                var result = (a[k] < b[k]) ? -1 : (a[k] > b[k]) ? 1 : 0;
+                return result * v;
+            })
+        }
+        return el;
+    }
+};
 const regex = {
     types:{
         RFC4122V4UUIDRegex:/^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4{1}[a-fA-F0-9]{3}-[89abAB]{1}[a-fA-F0-9]{3}-[a-fA-F0-9]{12}$/,
@@ -376,4 +393,4 @@ const regex = {
     isUnicodeEmail:(email)=>regex.regTest(new RegExp(regex.types.emailUnicodeRegex,'i'),email),
     
 };
-module.exports = {cl, ce, union, clone, intersect, is, geo, math, misc, regex};
+module.exports = {cl, ce, union, clone, intersect, is, geo, math, misc, regex, sort};
