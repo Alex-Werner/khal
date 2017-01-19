@@ -32,7 +32,25 @@ const ce = function () {
     }
     return arguments
 };
-const clone = obj => JSON.parse(JSON.stringify(obj));
+const clone = (obj) => {
+    if(is.undef(obj) || is.null(obj)){  return obj;}
+    if(obj.constructor.name=="String") return (obj);
+    if(obj.constructor.name=="Date") return new Date(obj.valueOf());
+    if(obj.constructor.name=="Array") return JSON.parse(JSON.stringify(obj));
+    if(obj.constructor.name=="Number") return (obj);
+    if(obj.constructor.name=="Object"){
+        let _clone = {};
+        for(var i=0; i<Object.keys(obj).length; i++){
+            let k = Object.keys(obj)[i];
+            let v = obj[k];
+            _clone[k]=clone(v);
+        }
+        return _clone;
+    }else{
+        return (obj);
+    }
+    
+}
 
 
 const intersect = function () {
@@ -97,6 +115,7 @@ const is = {
     
     def: val => val !== undefined,
     undef: val => val === undefined,
+    null: val=>val===null,
     promise: fn => fn && is.fn(fn.then) && is.fn(fn.catch),
     obs: obs => is.fn(obs) && is.fn(obs.set),
     event: ev => is.fn(ev.listen) && is.fn(ev.broadcast),
@@ -204,6 +223,23 @@ const geo = {
     }
 };
 const misc = {
+    merge:function(obj1={}){
+        let argsNb = arguments.length;
+        if(!argsNb) return {};
+        if(argsNb==1) return arguments[0];
+        if(argsNb>1){
+            let merged = clone(arguments[0]) || {};
+            for(let i=0; i<argsNb;i++){
+                let o = clone(arguments[i]);
+                for(let k in o){
+                    if(!merged.hasOwnProperty(k)){
+                        merged[k]=o[k];    
+                    }
+                }
+            }
+            return clone(merged);
+        }
+    },
     formatByteSize: function (bytes, binary = true) {
         function outputSIForm(bytes) {
             if (bytes < 1000) return bytes + " bytes";

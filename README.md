@@ -38,6 +38,7 @@ Utils for node project
     - `formatByteSize(bytes,[isSIForm])` - Make bytes readable using IEEC (MB) or SI (MiB) form
     - `sizeOfObject(obj)` - Get bytes size from obj (number, object or string)
     - `sizeOfObjectReadable(obj,[isSIForm])` - Make bytes readable using IEEC (MB) or SI (MiB) form from obj
+    - `merge(obj,[obj[...]])` - merge object with priority from left to right (left is left untouched), see it like an extends of left.
 - `regex`
     - `regTest(reg, val)` - Handy shortcut for regex testing
     - `isUUIDV4(uuid)` - Test a valid UUID V4

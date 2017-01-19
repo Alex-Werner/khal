@@ -32,7 +32,8 @@
     "intersection",
     "bytes",
     "formating",
-    "regex"
+    "regex",
+    "merge"
   ],
   "license": "MIT",
   "bugs": {
