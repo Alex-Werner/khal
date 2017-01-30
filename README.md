@@ -1,6 +1,8 @@
 # Khal
 
-Utils for node project
+Utils for node project  
+
+More info about what has changed in the last version : [Changelog](CHANGELOG.md)  
 
 # API
 
@@ -26,7 +28,7 @@ Utils for node project
 - `sort` - Handle sorting
     - `by` (el, param) given an object el, will sort by param defined
 
-Exemple : 
+Exemple :
 ```
 let obj = [{name:"alex",age:15},{name:"jean",age:10},{name:"brice",age:10},{name:"charles",age:50},{name:"franck",age:1}];
 sort.by(obj,{age:1}); //Will sort asc by age similar to sort.by(obj,{age:'asc'});
@@ -34,7 +36,7 @@ sort.by(obj,{age:-1}); //Will sort desc by age similar to sort.by(obj,{age:'desc
 
 sort.by(obj,{name:1,age:1}); //Will first sort asc by name then by age (so brice will be before jean having same age)
 ```
-    
+
 - `geo` - Handle geoCordinate
     - `create(lat, lon)` - returns a GeoCordinate object
     - `geocordinateStringToGeoCoordinateObject(str)` - transform a str "43.597446,1.454469" to a geoObject

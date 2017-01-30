@@ -6,13 +6,13 @@ describe('- Khal utils ', function () {
         it('should return the string displayed in log', function () {
             let str = "Totorodu54";
             let ret = cl(str);
-            
+
             ret.should.be.equal(str);
         })
         it('should return the timestamp by default', function () {
             let now = new Date().getTime();
             let ret = cl();
-            
+
             ret.should.be.equal(now);
         })
     });
@@ -20,13 +20,13 @@ describe('- Khal utils ', function () {
         it('should return the string displayed in log', function () {
             let str = "Totorodu54";
             let ret = ce(str);
-            
+
             ret.should.be.equal(str);
         })
         it('should return the timestamp by default', function () {
             let now = new Date().getTime();
             let ret = ce();
-            
+
             ret.should.be.equal(now);
         })
     });
@@ -49,7 +49,7 @@ describe('- Khal utils ', function () {
             let o_clone = clone(o);
             o_clone.should.be.deepEqual(o);
         })
-        
+
         it('should not be a ref', function () {
             let o_clone = clone(o);
             delete o["a"];
@@ -61,7 +61,7 @@ describe('- Khal utils ', function () {
             str = "titi";
             strC.should.equal('toto');
             strC.constructor.name.should.equal("String");
-            
+
         })
         it('should handle array', function () {
             let arr = ['a', 'b'];
@@ -72,7 +72,7 @@ describe('- Khal utils ', function () {
             arrC.constructor.name.should.equal(arr.constructor.name);
             arrC.should.deepEqual(['a', 'b']);
             arrC.constructor.name.should.equal("Array");
-            
+
         })
         it('should handle number', function () {
             let num = 42;
@@ -87,7 +87,7 @@ describe('- Khal utils ', function () {
             let date = new Date("2016-06-14");
             let dateC = clone(date)
             date = new Date("2017-06-14");
-            
+
             dateC.constructor.name.should.equal(date.constructor.name);
             dateC.should.deepEqual(new Date("2016-06-14"));
             dateC.constructor.name.should.equal("Date");
@@ -96,7 +96,7 @@ describe('- Khal utils ', function () {
             let geo1 = geo.create("43.597446", "1.454469");
             let geo1C = clone(geo1);
             geo1 = geo.create("44.852723", "-0.567896");
-            
+
             geo1C.constructor.name.should.equal(geo1.constructor.name);
             geo1C.should.deepEqual(geo.create("43.597446", "1.454469"));
             geo1.should.deepEqual(geo.create("44.852723", "-0.567896"));
@@ -110,7 +110,7 @@ describe('- Khal utils ', function () {
             let arr3 = intersect(arr1, arr2);
             arr3.should.be.containDeep([5, "6"]);
         });
-        
+
     });
     describe('union', function () {
         let arr1 = ['1', 2, 3, 4, 5, "6"];
@@ -140,7 +140,7 @@ describe('- Khal utils ', function () {
         it('is an int', function () {
             (is.int(int)).should.be.equal(true);
             (is.int(float)).should.not.be.equal(true);
-            
+
         });
         it('is an float', function () {
             (is.float(float)).should.be.equal(true);
@@ -168,7 +168,7 @@ describe('- Khal utils ', function () {
         it('should handle a geostring to geoCoordinate Object', function () {
             let geoStrTlse = "43.597446,1.454469";
             let geoTlse = geo.geocordinateStringToGeoCoordinateObject(geoStrTlse);
-            
+
             geoTlse.constructor.name.should.be.equal('GeoCordinate');
             geoTlse.should.have.property('latitude');
             geoTlse.should.have.property('longitude');
@@ -181,7 +181,7 @@ describe('- Khal utils ', function () {
             let geoStrTlse = "43.597446,1.454469";
             let geoTlse = geo.geocordinateStringToGeoCoordinateObject(geoStrTlse);
             let geoBdx = geo.create("44.852723", "-0.567896");
-            
+
             let distanceInKm = geo.calculateDistance(geoTlse, geoBdx);
             distanceInKm.should.be.equal(213.1807);
             geo.calculateDistance(geoTlse, geoBdx, null, 0).should.be.equal(213);
@@ -190,7 +190,7 @@ describe('- Khal utils ', function () {
             let geoStrTlse = "43.597446,1.454469";
             let geoTlse = geo.geocordinateStringToGeoCoordinateObject(geoStrTlse);
             let geoBdx = geo.create("44.852723", "-0.567896");
-            
+
             let distanceInKm = geo.calculateDistance(geoTlse, geoBdx, 'm', 5);
             distanceInKm.should.be.equal(213180.73848);
         });
@@ -198,7 +198,7 @@ describe('- Khal utils ', function () {
             let geoStrTlse = "43.597446,1.454469";
             let geoTlse = geo.geocordinateStringToGeoCoordinateObject(geoStrTlse);
             let geoBdx = geo.create("44.852723", "-0.567896");
-            
+
             let distanceInKm = geo.calculateDistance(geoTlse, geoBdx, 'miles', 5);
             distanceInKm.should.be.equal(132.46437);
         });
@@ -245,11 +245,11 @@ describe('- Khal utils ', function () {
             }
             it('should handle no args', function () {
                 misc.merge().should.deepEqual({});
-                
+
             });
             it('should handle one arg', function () {
                 misc.merge(obj1).should.deepEqual(obj1);
-                
+
             });
             it('should handle second arg with first being null or empty', function () {
                 misc.merge({}, obj2).should.deepEqual(obj2);
@@ -280,10 +280,10 @@ describe('- Khal utils ', function () {
             it('should prioritize left over right', function () {
                 misc.merge(obj1, obj1_1).should.deepEqual(obj1);
                 misc.merge(obj1_1, obj1).should.deepEqual(obj1_1);
-                
+
                 misc.merge(obj4, obj4_1).should.deepEqual(obj4);
                 misc.merge(obj4_1, obj4).should.deepEqual(obj4_1);
-                
+
             });
         });
         it('should transform bytes into readable form', function () {
@@ -312,22 +312,58 @@ describe('- Khal utils ', function () {
             regex.isUUIDV4(validUUID).should.equal(true);
             regex.isUUIDV4(invalidUUID).should.equal(false);
         });
+        it('should verify a valid uri', function(){
+          regex.isUri("ftp://128.125.132.10").should.equal(true);
+          regex.isUri("http://google.fr").should.equal(true);
+          regex.isUri("HTTP://GOOGLE.FR").should.equal(true);
+          regex.isUri("www.google.fr").should.equal(true);
+          regex.isUri("google.fr").should.equal(true);
+          regex.isUri("go.fr").should.equal(true);
+          regex.isUri("http://www.google.fr").should.equal(true);
+          regex.isUri("http://google.fr").should.equal(true);
+          regex.isUri("https://www.google.fr").should.equal(true);
+          regex.isUri("https://google.fr").should.equal(true);
+          regex.isUri("gogl.com").should.equal(true);
+          regex.isUri("google.clo").should.equal(true);
+          regex.isUri("www.gogrgrgro.com.sd").should.equal(true);
+          regex.isUri("bit.ly/12bl3xX").should.equal(true);
+          regex.isUri("t.ly/12bl3xX").should.equal(true);
+          regex.isUri("www.google.co.in").should.equal(true);
+          regex.isUri("toto du 4758").should.equal(false);
+          regex.isUri("Hey suis moi sur mon profil giraf ;)").should.equal(false);
+
+            var text = `^ asserts position at start of a line
+              Non-capturing group (?:(?:https?|ftp):\/\/)?
+              ? Quantifier — Matches between zero and one times, as many times as possible, giving back as needed (greedy)
+              Non-capturing group (?:https?|ftp)
+              1st Alternative https?
+              http matches the characters http literally (case insensitive)
+              s? matches the character s literally (case insensitive)
+              ? Quantifier — Matches between zero and one times, as many times as possible, giving back as needed (greedy)
+              2nd Alternative ftp
+              ftp matches the characters ftp literally (case insensitive)
+              : matches the character : literally (case insensitive)
+              \/ matches the character / literally (case insensitive)
+              \/ matches the character / literally (case insensitive)`;
+          regex.isUri(text).should.equal(false);
+
+        });
     })
     describe('Sorting',function(){
        it('should sort',function () {
            let obj = [{age:15},{age:10},{age:50},{age:1}];
            let s1 = sort.by(obj,{age:1});
            s1.should.be.deepEqual([ { age: 1 }, { age: 10 }, { age: 15 }, { age: 50 } ]);
-           
+
            let s2 = sort.by(obj,{age:-1});
            s2.should.be.deepEqual([ { age: 50 }, { age: 15 }, { age: 10 }, { age: 1 } ]);
-    
+
            let s3 = sort.by(obj,{age:'asc'});
            s3.should.be.deepEqual([ { age: 1 }, { age: 10 }, { age: 15 }, { age: 50 } ]);
-    
+
            let s4 =sort.by(obj,{age:'desc'});
            s4.should.be.deepEqual([ { age: 50 }, { age: 15 }, { age: 10 }, { age: 1 } ]);
-    
+
        })
         it('should sort multiple',function () {
             let obj = [{name:"alex",age:15},{name:"jean",age:10},{name:"brice",age:10},{name:"charles",age:50},{name:"franck",age:1}];
