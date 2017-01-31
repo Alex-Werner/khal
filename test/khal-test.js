@@ -152,6 +152,12 @@ describe('- Khal utils ', function () {
         it('is a bool', function () {
             (is.bool(bool).should.be.equal(true))
         })
+		it('is an hex',function(){
+			(is.hex('1F600').should.be.equal(true));
+			(is.hex('1f600').should.be.equal(true));
+			(is.hex('1K600').should.be.equal(false))
+
+		})
     });
     describe('Geo', function () {
         it('should create a GeoCordinate object', function () {

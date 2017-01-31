@@ -1,3 +1,6 @@
+# 1.3.0 - 31/01/2017
+* Added is.hex a util able to detect if passed string is an hexa string or not.
+
 # 1.2.1 - 30/01/2017
 * Added Regex for parsing a string that contains a valid URI
   * `regex.hasUri("t.ly/12bl3xX");` will return `true`
