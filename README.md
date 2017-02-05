@@ -37,6 +37,12 @@ sort.by(obj,{age:-1}); //Will sort desc by age similar to sort.by(obj,{age:'desc
 sort.by(obj,{name:1,age:1}); //Will first sort asc by name then by age (so brice will be before jean having same age)
 ```
 
+- `file` - Handle file
+    - `create(filename, [cb])` - Create an empty file (sync if not cb passed, async in the other case)
+    - `delete(filename, [cb])` - Delete a file (sync if not cb passed, async in the other case)
+    - `append(filename, data, [cb])` - Append data in file (sync if not cb passed, async in the other case)
+    - `exist(filename, [cb])` - Check if a file exist  (sync if not cb passed, async in the other case)
+    - `sizeof(filename, [cb])` - Get bytes size of a file (sync if not cb passed, async in the other case)
 - `geo` - Handle geoCordinate
     - `create(lat, lon)` - returns a GeoCordinate object
     - `geocordinateStringToGeoCoordinateObject(str)` - transform a str "43.597446,1.454469" to a geoObject

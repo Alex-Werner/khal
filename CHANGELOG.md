@@ -1,3 +1,6 @@
+# 1.4.0 - 05/02/2017
+* Added little file helper (create, append, delete, sizeof, exist)
+
 # 1.3.0 - 31/01/2017
 * Added is.hex a util able to detect if passed string is an hexa string or not.
 

@@ -409,3 +409,5 @@ describe('- Khal utils ', function () {
         })
     });
 });
+
+require('./file.js')();
