@@ -54,6 +54,8 @@ sort.by(obj,{name:1,age:1}); //Will first sort asc by name then by age (so brice
     - `radianToDegree(rad)`
     - `degreeToRadian(deg)`
     - `randomBetweenMinAndMax(min,max,[precision])`
+    - `levenshtein(stringA, stringB)` - return an array as of levenshtein (string distance)
+    - `stringDistance(stringA, stringB)` - return an int, value of the distance between two strings
 - `misc` - Handle stuff
     - `formatByteSize(bytes,[isSIForm])` - Make bytes readable using IEEC (MB) or SI (MiB) form
     - `sizeOfObject(obj)` - Get bytes size from obj (number, object or string)
