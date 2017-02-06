@@ -1,3 +1,6 @@
+# 1.5.0 - 06/02/2017
+* Added levenshtein + stringDistance between two strings.
+
 # 1.4.0 - 05/02/2017
 * Added little file helper (create, append, delete, sizeof, exist)
 
