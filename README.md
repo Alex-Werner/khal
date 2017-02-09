@@ -1,6 +1,12 @@
 # Khal
 
-Utils for node project  
+Utils for node project   
+
+#### Disclaimer   
+
+There is a lot of other npm that do what I've done but in a better/more fashion/more optimized way. But well, I know what is inside this,
+and this is the one I used a lot in my project. So don't blame for all the duplicates bytes I've done here.   
+I might optimize theses function in the future, just for the lolz and the learning.
 
 More info about what has changed in the last version : [Changelog](CHANGELOG.md)  
 
@@ -50,6 +56,10 @@ sort.by(obj,{name:1,age:1}); //Will first sort asc by name then by age (so brice
     - `convert(float)`
         - `toMiles()` - convert to Miles a value in meters
         - `toMeters()` - convert to Meters a value in miles
+- `string` - Handle string
+    - `pad` - Handle Padding
+        - `left(string, length, [replacementString])` - Transform an input and adding in left the replacement value. Returns a string.
+        - `right(string, length, [replacementString])` - Transform an input and adding in right the replacement value. Returns a string.
 - `math` - Handle math
     - `radianToDegree(rad)`
     - `degreeToRadian(deg)`
@@ -78,3 +88,4 @@ sort.by(obj,{name:1,age:1}); //Will first sort asc by name then by age (so brice
     - `UTCEpoch`
     - `localEpochMS`
     - `localEpoch`
+    - `calculateAge(dateString, [date])` - Given a date String (YYYY-MM-DD) return the year diff between today or the date given as second arg.

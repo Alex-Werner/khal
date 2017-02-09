@@ -1,4 +1,4 @@
-const {cl, ce, union, clone, intersect, is, geo, math, misc, regex,sort} = require('../index.js');
+const {cl, ce, union, clone, intersect, is, geo, math, misc, regex,sort, string} = require('../index.js');
 const should = require('should');
 
 require('./ce.js')();
@@ -12,5 +12,6 @@ require('./is.js')();
 require('./math.js')();
 require('./misc.js')();
 require('./sort.js')();
+require('./string.js')();
 require('./regex.js')();
 require('./union.js')();

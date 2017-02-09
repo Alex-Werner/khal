@@ -1,3 +1,7 @@
+# 1.6.0 - 09/02/2017
+* Added date.calculateAge 
+* Added string.pad.left && string.pad.right
+
 # 1.5.0 - 06/02/2017
 * Added levenshtein + stringDistance between two strings.
 
