@@ -71,6 +71,10 @@ sort.by(obj,{name:1,age:1}); //Will first sort asc by name then by age (so brice
     - `sizeOfObject(obj)` - Get bytes size from obj (number, object or string)
     - `sizeOfObjectReadable(obj,[isSIForm])` - Make bytes readable using IEEC (MB) or SI (MiB) form from obj
     - `merge(obj,[obj[...]])` - merge object with priority from left to right (left is left untouched), see it like an extends of left.
+- `os` - Handle OS stuff
+    - `getServerIp([_family])` - Get server ip by his familly (IPv4 by default, IPv6 should be passed as arg)   
+       => `khal.os.getServerIP("IPv6")` for IPv6  
+       => `khal.os.getServerIP()` or `khal.os.getServerIP("IPv4")` for IPv4  
 - `regex`
     - `regTest(reg, val)` - Handy shortcut for regex testing
     - `isUUIDV4(uuid)` - Test a valid UUID V4
