@@ -1,6 +1,6 @@
 {
   "name": "khal",
-  "version": "1.9.0",
+  "version": "1.10.0",
   "description": "Node utility librairies",
   "main": "index.js",
   "repository": {

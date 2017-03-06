@@ -15,5 +15,7 @@ const regex = require('./lib/regex.js');
 const sort = require('./lib/sort.js');
 const string = require('./lib/string.js');
 const union = require('./lib/union.js');
+const uuid = require('./lib/uuid.js');
 
-module.exports = {cl, ce, clone, date, file, geo, intersect, is, math, misc, os, regex, sort, string, union};
+
+module.exports = {cl, ce, clone, date, file, geo, intersect, is, math, misc, os, regex, sort, string, union, uuid};

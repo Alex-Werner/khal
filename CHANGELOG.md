@@ -1,3 +1,6 @@
+# 1.10.0 - 06/03/2017
+* Added uuid.generate.v4 method.
+
 # 1.9.0 - 06/03/2017
 * Added is.JSON
 * Added is.stringified
