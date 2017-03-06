@@ -66,6 +66,11 @@ sort.by(obj,{name:1,age:1}); //Will first sort asc by name then by age (so brice
     - `randomBetweenMinAndMax(min,max,[precision])`
     - `levenshtein(stringA, stringB)` - return an array as of levenshtein (string distance)
     - `stringDistance(stringA, stringB)` - return an int, value of the distance between two strings
+    - `highest(numbersList)` - return the highest number from a list of numbers
+    - `lowest(numbersList)` - return the lowest number from a list of numbers
+    - `median(numbersList)` - return the median number from a list of numbers
+    - `mean(numbersList)` - return the mean number from a list of numbers
+    - `average(numbersList)` - return the average number from a list of numbers
 - `misc` - Handle stuff
     - `formatByteSize(bytes,[isSIForm])` - Make bytes readable using IEEC (MB) or SI (MiB) form
     - `sizeOfObject(obj)` - Get bytes size from obj (number, object or string)
