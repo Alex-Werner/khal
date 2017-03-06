@@ -31,6 +31,8 @@ More info about what has changed in the last version : [Changelog](CHANGELOG.md)
     - `promise`
     - `obs`
     - `event`
+    - `stringified`
+    - `JSON`
 - `sort` - Handle sorting
     - `by` (el, param) given an object el, will sort by param defined
 

@@ -1,3 +1,13 @@
+# 1.9.0 - 06/03/2017
+* Added is.JSON
+* Added is.stringified
+# 1.8.0 - 05/03/2017
+* Added average, mean, median, highest and lowest math methods
+
+# 1.7.0 - 17/02/2017
+* Added getServerIP (IPv4 or IPv6)
+* Added file.download
+
 # 1.6.0 - 09/02/2017
 * Added date.calculateAge 
 * Added string.pad.left && string.pad.right
