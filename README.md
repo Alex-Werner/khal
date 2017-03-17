@@ -100,3 +100,4 @@ sort.by(obj,{name:1,age:1}); //Will first sort asc by name then by age (so brice
     - `localEpochMS`
     - `localEpoch`
     - `calculateAge(dateString, [date])` - Given a date String (YYYY-MM-DD) return the year diff between today or the date given as second arg.
+    - `YYYYMMDDhhmmss([separatorDate="-", [separatorTime=":", [separatorBetween=" ")]]]` Return formatted date in specified form with specified separator.
