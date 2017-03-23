@@ -1,3 +1,6 @@
+# 2.0.0 - 23/03/2017
+* [BREAKING] - Change the way YYYYMMDDhhmmss is used.
+
 # 1.10.0 - 06/03/2017
 * Added uuid.generate.v4 method.
 

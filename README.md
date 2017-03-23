@@ -100,4 +100,9 @@ sort.by(obj,{name:1,age:1}); //Will first sort asc by name then by age (so brice
     - `localEpochMS`
     - `localEpoch`
     - `calculateAge(dateString, [date])` - Given a date String (YYYY-MM-DD) return the year diff between today or the date given as second arg.
-    - `YYYYMMDDhhmmss([separatorDate="-", [separatorTime=":", [separatorBetween=" ")]]]` Return formatted date in specified form with specified separator.
+    - `YYYYMMDDhhmmss([params]]` Return formatted date in specified form with specified separator.
+        Where params can be :
+        - separatorDate - Default "-", - Allow to set a separator between years, months, and date.
+        - separatorTime - Default ":" - Allow to set a separator between Hours, minutes and seconds.
+        - separatorBetween - Default " " - Will allow to set a separateur between the Time block and the Date block.
+        - d - Default is Now Date. - Allow to use a specific Date object to format from.
